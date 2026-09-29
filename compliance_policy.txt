@@ -1,0 +1,11 @@
+[SECTION-101: HIGH-VELOCITY ANOMALY PROTOCOL]
+Any account attempting more than 5 distinct transactions within a rolling 24-hour cycle from unverified geo-clusters must be halted immediately. This velocity pattern frequently correlates with card testing or brute-force merchant terminal attacks. Recommended Action: Temporary card freeze and mandatory two-factor cryptographic challenge.
+
+[SECTION-204: GEOGRAPHIC LOCATION DEVIATION POLICY]
+Transactions initiated at a distance exceeding 100 kilometers from the cardholder's baseline geographical cluster require primary fraud review. If the deviation occurs between 01:00 and 05:00 hours local time, authorization must be declined due to elevated nocturnal physical theft or terminal skimming risk.
+
+[SECTION-309: UNUSUAL TICKET SIZE THRESHOLD]
+Payments exceeding $500.00 from newly registered accounts or accounts lacking an established baseline require stepped-up validation. If combined with elevated behavioral anomaly scores (reconstruction loss > 1.5), the event must trigger an automated Suspicious Activity Report (SAR) filing under AML Directive 4.
+
+[SECTION-412: BASELINE CLEARANCE PROTOCOL]
+Transactions under $100.00 occurring during normal daylight operating hours (08:00 to 20:00) with transaction velocity under 3 counts per day and location within 20 kilometers are classified as Low Risk Baseline and are clear for zero-friction settlement.
