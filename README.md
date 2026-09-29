@@ -1,6 +1,24 @@
 # 🛡️ SentinelPay | Enterprise Fraud, Anomaly & RAG Intelligence Engine
 
-A production-grade FinTech intelligence platform engineered to detect payment anomalies, classify transaction fraud, and automate regulatory compliance reporting.
+[![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
+[![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
+[![Python](https://img.shields.io/badge/Python-3.14-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+
+A production-grade FinTech intelligence platform engineered to detect payment anomalies, classify transaction fraud, and automate regulatory compliance reporting via dynamic Retrieval-Augmented Generation (RAG).
+
+---
+
+## 👨‍💻 Author & Engineering Profile
+
+* **Developer:** **Sunny Thakur**
+* **Role:** AI & Machine Learning Infrastructure Developer
+* **GitHub:** [![GitHub](https://img.shields.io/badge/GitHub-sunnythakursunny650--cell-181717?style=flat-square&logo=github)](https://github.com/sunnythakursunny650-cell)
+* **LinkedIn:** [![LinkedIn](https://img.shields.io/badge/LinkedIn-Sunny_Thakur-0A66C2?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/sunny-thakur-4a56103b9/)
+* **Operations Dashboard:** Live UI built with [Streamlit](https://streamlit.io/)
+
+---
 
 ## 🚀 Key Architectural Pillars
 
@@ -11,33 +29,43 @@ A production-grade FinTech intelligence platform engineered to detect payment an
   - Contextual retrieval across FinTech guidelines (AML / RBI thresholds).
   - Automated generation of Forensic Suspicious Activity Reports (SAR).
 - **Asynchronous API Gateway:** Built on FastAPI with strict Pydantic payload schema validation.
-- **Enterprise Ledger:** SQLAlchemy ORM coupled with SQLite/PostgreSQL for immutable audit logging.
+- **Enterprise Ledger:** SQLAlchemy ORM coupled with SQLite for immutable audit logging.
 - **Interactive Operations Center:** Streamlit dashboard for real-time risk scoring, CSV bulk stream ingestion, and audit analysis.
 
-## 🛠️ Tech Stack
+---
 
-- **Languages & Frameworks:** Python 3.13, FastAPI, Streamlit, SQLAlchemy
-- **Machine Learning & AI:** PyTorch, XGBoost, Scikit-Learn, NumPy, Pandas
-- **Persistence & Formats:** SQLite, CSV Ingestion, Joblib
+## 🛠️ Tech Stack & Dependencies
 
-## ⚙️ Quickstart
+| Layer | Technologies |
+| :--- | :--- |
+| **Backend & REST API** | FastAPI, Uvicorn, Pydantic |
+| **Machine Learning (Supervised)** | XGBoost, Scikit-Learn |
+| **Deep Learning (Unsupervised)** | PyTorch (Autoencoder Architecture) |
+| **GenAI / Compliance** | RAG Engine, AML Policy Knowledge Base |
+| **Database & ORM** | SQLite, SQLAlchemy |
+| **Operations UI** | Streamlit, Pandas, NumPy |
 
-1. **Clone & Install Dependencies:**
-   ```bash
-   pip install -r requirements.txt
+---
 
+## ⚙️ Quickstart & Execution
 
-### 1. Train AI Engine
+### 1. Clone & Setup Environment
+```bash
+git clone [https://github.com/sunnythakursunny650-cell/sentinelpay-fraud-engine.git](https://github.com/sunnythakursunny650-cell/sentinelpay-fraud-engine.git)
+cd sentinelpay-fraud-engine
+pip install -r requirements.txt
+
+### 2. Train AI Engine
 ```bash
 python train_engine.py
+```
 
-
-### 1. Start API Gateway
+### 3. Start API Gateway
 ```bash
 uvicorn main:app --reload
 ```
 
-### 2. Launch Dashboard
+### 4. Launch Dashboard
 ```bash
 streamlit run dashboard.py
 ```
