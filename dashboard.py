@@ -1,9 +1,36 @@
+import os
+
 import pandas as pd
 import requests
 import streamlit as st
 
-API_BASE_URL = "http://127.0.0.1:8000"
 
+# ==========================================================
+# Configuration
+# ==========================================================
+LOCAL_API_URL = "http://127.0.0.1:8000"
+
+# Streamlit Cloud:
+# Add this in App Settings -> Secrets:
+# API_BASE_URL = "https://YOUR-FASTAPI-URL.onrender.com"
+#
+# Local:
+# The dashboard automatically falls back to the local FastAPI server.
+
+try:
+    API_BASE_URL = st.secrets.get(
+        "API_BASE_URL",
+        os.getenv("API_BASE_URL", LOCAL_API_URL),
+    )
+except Exception:
+    API_BASE_URL = os.getenv("API_BASE_URL", LOCAL_API_URL)
+
+API_BASE_URL = str(API_BASE_URL).rstrip("/")
+
+
+# ==========================================================
+# Streamlit Page Configuration
+# ==========================================================
 st.set_page_config(
     page_title="SentinelPay | Risk Intelligence Demo",
     page_icon="🛡️",
@@ -11,9 +38,10 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# -----------------------------
+
+# ==========================================================
 # Custom Styling
-# -----------------------------
+# ==========================================================
 st.markdown(
     """
     <style>
@@ -39,9 +67,10 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# -----------------------------
+
+# ==========================================================
 # Sidebar
-# -----------------------------
+# ==========================================================
 with st.sidebar:
     st.markdown(
         '<div class="author-badge">PROJECT DEVELOPER</div>',
@@ -55,6 +84,7 @@ with st.sidebar:
         "[![GitHub](https://img.shields.io/badge/GitHub-Profile-181717?style=flat&logo=github)]"
         "(https://github.com/sunnythakursunny650-cell)"
     )
+
     st.markdown(
         "[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat&logo=linkedin)]"
         "(https://www.linkedin.com/in/sunny-thakur-4a56103b9/)"
@@ -94,11 +124,17 @@ with st.sidebar:
         )
 
     st.divider()
-    st.caption("SentinelPay is an illustrative ML/DL transaction-risk demonstration.")
 
-# -----------------------------
+    st.caption(
+        "SentinelPay is an illustrative ML/DL transaction-risk demonstration."
+    )
+
+    st.caption(f"API target: {API_BASE_URL}")
+
+
+# ==========================================================
 # Header
-# -----------------------------
+# ==========================================================
 c_title, c_badge = st.columns([3, 1])
 
 with c_title:
@@ -110,13 +146,15 @@ with c_title:
 
 with c_badge:
     st.write("")
-    st.success("🟢 API Gateway: ACTIVE")
+    st.success("🟢 API Gateway: READY")
+
 
 st.divider()
 
-# -----------------------------
+
+# ==========================================================
 # Navigation
-# -----------------------------
+# ==========================================================
 tab_live, tab_batch, tab_ledger, tab_architecture = st.tabs(
     [
         "⚡ Live Risk Simulation",
@@ -125,6 +163,7 @@ tab_live, tab_batch, tab_ledger, tab_architecture = st.tabs(
         "🔍 System Architecture",
     ]
 )
+
 
 # ==========================================================
 # TAB 1: LIVE RISK SIMULATION
@@ -236,7 +275,9 @@ with tab_live:
                             "No specific policy section matched this transaction."
                         )
 
-                    st.markdown("##### 📑 Automated Compliance Review Report")
+                    st.markdown(
+                        "##### 📑 Automated Compliance Review Report"
+                    )
 
                     st.code(
                         data.get(
@@ -253,12 +294,18 @@ with tab_live:
                     )
 
                 else:
-                    st.error(f"API Error {res.status_code}: {res.text}")
+                    st.error(
+                        f"API Error {res.status_code}: {res.text}"
+                    )
 
             except requests.exceptions.ConnectionError:
                 st.error(
-                    "FastAPI server is offline. Start it with:\n\n"
-                    "`uvicorn main:app --reload`"
+                    "FastAPI server is offline or the configured API URL "
+                    "is unreachable."
+                )
+                st.code(
+                    "uvicorn main:app --reload",
+                    language="bash",
                 )
 
             except requests.exceptions.Timeout:
@@ -268,7 +315,10 @@ with tab_live:
                 st.error(f"Unexpected error: {e}")
 
         else:
-            st.info("Enter transaction details and click Execute Risk Evaluation.")
+            st.info(
+                "Enter transaction details and click Execute Risk Evaluation."
+            )
+
 
 # ==========================================================
 # TAB 2: BATCH CSV PROCESSING
@@ -315,7 +365,9 @@ with tab_batch:
                         batch_res = res.json()
                         summary = batch_res["summary"]
 
-                        st.success("Batch processing completed successfully.")
+                        st.success(
+                            "Batch processing completed successfully."
+                        )
 
                         s1, s2, s3, s4 = st.columns(4)
 
@@ -352,8 +404,8 @@ with tab_batch:
 
                 except requests.exceptions.ConnectionError:
                     st.error(
-                        "FastAPI server is offline. Start it with:\n\n"
-                        "`uvicorn main:app --reload`"
+                        "FastAPI server is offline or the configured API URL "
+                        "is unreachable."
                     )
 
                 except requests.exceptions.Timeout:
@@ -361,6 +413,7 @@ with tab_batch:
 
                 except Exception as e:
                     st.error(f"Batch processing error: {e}")
+
 
 # ==========================================================
 # TAB 3: AUDIT LEDGER
@@ -394,7 +447,6 @@ with tab_ledger:
             use_container_width=True,
         )
 
-    # Refresh button is intentionally available; data also loads on tab open.
     try:
         params = {}
 
@@ -441,12 +493,13 @@ with tab_ledger:
 
     except requests.exceptions.ConnectionError:
         st.error(
-            "FastAPI server is offline. Start it with:\n\n"
-            "`uvicorn main:app --reload`"
+            "FastAPI server is offline or the configured API URL "
+            "is unreachable."
         )
 
     except Exception as e:
         st.error(f"Ledger connectivity issue: {e}")
+
 
 # ==========================================================
 # TAB 4: SYSTEM ARCHITECTURE
