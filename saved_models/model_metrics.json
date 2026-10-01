@@ -1,0 +1,30 @@
+{
+    "dataset": {
+        "total_samples": 5000,
+        "normal_samples": 4750,
+        "fraud_samples": 250,
+        "fraud_rate": 0.05
+    },
+    "xgboost": {
+        "accuracy": 0.968,
+        "precision": 0.7407407407407407,
+        "recall": 0.5405405405405406,
+        "f1_score": 0.625,
+        "roc_auc": 0.8008415147265077,
+        "classification_threshold": 0.6999999999999996,
+        "scale_pos_weight": 19.0,
+        "confusion_matrix": [
+            [
+                706,
+                7
+            ],
+            [
+                17,
+                20
+            ]
+        ]
+    },
+    "autoencoder": {
+        "anomaly_threshold": 1.3336647748947144
+    }
+}
