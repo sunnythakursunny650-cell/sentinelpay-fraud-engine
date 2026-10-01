@@ -5,6 +5,7 @@
 [![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
 [![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
 [![Python](https://img.shields.io/badge/Python-3.14-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
 
 A production-grade FinTech intelligence platform engineered to detect payment anomalies, classify transaction fraud, and automate regulatory compliance reporting via dynamic Retrieval-Augmented Generation (RAG).
 
@@ -31,6 +32,7 @@ A production-grade FinTech intelligence platform engineered to detect payment an
 - **Asynchronous API Gateway:** Built on FastAPI with strict Pydantic payload schema validation.
 - **Enterprise Ledger:** SQLAlchemy ORM coupled with SQLite for immutable audit logging.
 - **Interactive Operations Center:** Streamlit dashboard for real-time risk scoring, CSV bulk stream ingestion, and audit analysis.
+- **Containerized Orchestration:** Multi-service deployment powered by Docker and Docker Compose.
 
 ---
 
@@ -44,6 +46,7 @@ A production-grade FinTech intelligence platform engineered to detect payment an
 | **GenAI / Compliance** | RAG Engine, AML Policy Knowledge Base |
 | **Database & ORM** | SQLite, SQLAlchemy |
 | **Operations UI** | Streamlit, Pandas, NumPy |
+| **DevOps & Containers** | Docker, Docker Compose |
 
 ---
 
@@ -54,6 +57,7 @@ A production-grade FinTech intelligence platform engineered to detect payment an
 git clone [https://github.com/sunnythakursunny650-cell/sentinelpay-fraud-engine.git](https://github.com/sunnythakursunny650-cell/sentinelpay-fraud-engine.git)
 cd sentinelpay-fraud-engine
 pip install -r requirements.txt
+```
 
 ### 2. Train AI Engine
 ```bash
@@ -69,3 +73,21 @@ uvicorn main:app --reload
 ```bash
 streamlit run dashboard.py
 ```
+
+### 5. Run via Docker Compose (Optional)
+```bash
+docker compose up --build
+```
+
+---
+
+## ⚖️ Compliance & SAR Architecture
+
+Transactions evaluated as **DECLINED** or **FLAGGED_REVIEW** automatically trigger the internal RAG synthesizer:
+1. Cross-references parameters against `compliance_policy.txt` (Velocity, Geo-cluster, Ticket limits).
+2. Attaches exact regulatory breach citations (e.g., `[SECTION-101]`, `[SECTION-204]`).
+3. Generates an automated legal forensic dossier ready for regulatory filing.
+
+---
+
+© 2026 Sunny Thakur. Built for Enterprise FinTech AI Infrastructure.
